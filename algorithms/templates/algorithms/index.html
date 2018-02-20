@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+
+  <body>
+    <div class="container">
+            <div class="alert alert-success">
+                <strong>Success!</strong> will be closed in 5s.
+            </div>
+
+            {% if latest_algorithm_list %}
+                <ul>
+                {% for x in latest_algorithm_list %}
+                    <li>
+                        <a href="{% url 'algorithms:detail' x.id %}">
+                            {{ x.type_text }}
+                        </a>
+                    </li>
+                
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No algorithms are available.</p>
+            {% endif %}
+
+    </div>
+ 
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            
+            window.setTimeout(function() {
+                $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
+                    $(this).remove(); 
+                });
+            }, 5000);
+         
+        });
+        </script>
+    
+     
+</body>
+</html>

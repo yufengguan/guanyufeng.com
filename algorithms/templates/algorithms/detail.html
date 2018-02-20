@@ -1,0 +1,22 @@
+
+<h1>{{ type.type_text }}</h1>
+
+<form action="{% url 'algorithms:execute' type.id %}" method="post">
+    {% csrf_token %}
+    
+    {% for algorithm in type.algorithm_set.all %}
+        <input type="radio" 
+               name="algorithm" 
+               id="algorithm{{ forloop.counter }}" 
+               value="{{ algorithm.id }}" />
+        <label for="algorithm{{ forloop.counter }}">
+               {{ algorithm.algorithm_text }}
+        </label>
+        <br />   
+    {% endfor %}
+    <br/>
+    <input type="submit" value="Execute" />
+
+</form>
+
+

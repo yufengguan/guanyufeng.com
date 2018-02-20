@@ -1,0 +1,11 @@
+<h1>{{ type.type_text }}</h1>
+
+<ul>
+    {% for x in type.algorithm_set.all %}
+        <li>{{ x.algorithm_text }} -- {{ x.times }} Algorithm {{ x.times|pluralize }} 
+            {{ x.result }}    
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'algorithms:detail' type.id %}">Try again?</a>
